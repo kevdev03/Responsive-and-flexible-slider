@@ -1,0 +1,15 @@
+.container {
+  width: 70rem;
+  margin: 0 auto;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  grid-gap: 16px;
+}
+
+aside div {
+  height: 400px;
+  margin-bottom: 16px;
+}

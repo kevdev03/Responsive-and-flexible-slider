@@ -1,0 +1,103 @@
+/* body {
+  background: lightseagreen;
+
+} */
+
+
+.carousel--slider-container {
+  /* margin: 0 auto;
+  padding: 0 15px;
+  max-width: 1024px; */
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel--slider-wrapper {
+  width: 5120px;
+  display: flex;
+  transition: margin-left .3s;
+}
+
+.carousel--slide {
+  float: left;
+  width: 1024px;
+  min-height: 100px;
+}
+
+.carousel--box-wrapper {
+  display: none;
+  transition: opacity .8s;
+}
+
+.carousel--box-wrapper.active {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  /* width: 1024px; */
+  /* height: 800px; */
+}
+
+.carousel--slider-aux {
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel--slider--controls {
+  display: flex;
+  justify-content: space-between;
+}
+
+.carousel--slider--indicators ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+
+.carousel--slider--indicators li a {
+  display: block;
+}
+
+.carousel--slider--indicators li a div.circle {
+  margin: 8px;
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  border: 1px solid #09c;
+  transition: background .3s;
+}
+
+.carousel--slider--indicators li a.active div.circle {
+  background: #09c;
+}
+
+.carousel--slider--indicators li a:hover div.circle {
+  background: #09c;
+}
+
+.carousel--slider--control_toggle {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  display: none !important;
+}
+
+.carousel--slider--controls i {
+  cursor: pointer;
+  color: #09c;
+}
+
+.carousel--slider--controls i:hover {
+  color: #006d91;
+}
+
+/* grid content */
+.carousel--grid-container {
+  display: grid;
+  grid-gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 300px);
+}
