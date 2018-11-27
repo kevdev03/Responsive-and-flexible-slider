@@ -6,17 +6,34 @@ const indicators = slider.querySelectorAll('.carousel--slider--indicators a');
 const controls = document.querySelector('.carousel--slider--controls');
 let isPlaying = true;
 
-document.addEventListener('DOMContentLoaded', ($) => {
-  controls.querySelector('.previous').addEventListener('click', prevSlide);
-  controls.querySelector('.next').addEventListener('click', nextSlide);
+let timer;
+let resetInterval;
+let interval = 3000;
+const progress = document.querySelector('.progress');
+let resetCounter = 0;
+let i = 0;
 
-  indicators.forEach(indicator => {
-    indicator.addEventListener('click', jumpTo);
+document.addEventListener('DOMContentLoaded', ($) => {
+  controls.querySelector('.previous').addEventListener('click', () => {
+    prevSlide();
+    resetTimer();
+  });
+  controls.querySelector('.next').addEventListener('click', () => {
+    nextSlide();
+    resetTimer();
   });
 
-  setResetInterval(isPlaying);
+  indicators.forEach(indicator => {
+    indicator.addEventListener('click', () => {
+      jumpTo();
+      resetTimer();
+    });
+  });
+
+  // setResetInterval(isPlaying);
+  startTimer();
   controls.querySelector('.carousel--slider--control_toggle').addEventListener('change', e => {
-    setResetInterval(e.target.checked);
+    // setResetInterval(e.target.checked);
 
     const icon = controls.querySelector('i.fa');
     if (e.target.checked) {
@@ -28,7 +45,17 @@ document.addEventListener('DOMContentLoaded', ($) => {
     }
   });
 
+  slides.forEach(slide => {
+    slide.addEventListener('mouseover', stopTimer);
+    slide.addEventListener('mouseleave', startTimer);
+  });
+
 });
+
+let adjustWidth = () => {
+  i++;
+  progress.style.width = `${100 - (100 / (interval / 1000)) * i}%`;
+}
 
 const nextSlide = () => {
   const activeBox = slider.querySelector('.carousel--slide .carousel--box-wrapper.active');
@@ -101,6 +128,36 @@ const jumpTo = (slide) => {
   slides[index].querySelector('.carousel--box-wrapper').classList.add('active');
 }
 
+const startTimer = () => {
+  resetInterval = setInterval(autoPlay, interval);
+  timer = setTimeout(function myTimer() {
+    adjustWidth();
+    resetCounter++;
+
+    timer = setTimeout(myTimer, 1000);
+  }, 1000);
+}
+
+const stopTimer = () => {
+  console.log('stop!');
+  clearTimeout(timer);
+  clearInterval(resetInterval);
+}
+
+const autoPlay = () => {
+  nextSlide();
+  resetTimer();
+}
+
+// run this function every interval seconds
+const resetTimer = () => {
+  i = 0;
+  progress.style.width = `100%`;
+
+  stopTimer();
+  startTimer();
+}
+
 const setResetInterval = (isActive) => {
   const slideSpeed = 4500;
   const slidesLength = slides.length;
@@ -136,10 +193,12 @@ document.addEventListener('keyup', (e) => {
   ) {
     if (e.keyCode === 37) {
       prevSlide();
+      resetTimer();
     } else if (e.keyCode === 39) {
       nextSlide();
+      resetTimer();
     }
   } else {
     return;
   }
-})
+});

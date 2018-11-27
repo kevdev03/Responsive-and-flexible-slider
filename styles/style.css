@@ -1,15 +1,32 @@
+h1 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+
 .container {
   width: 70rem;
   margin: 0 auto;
 }
 
 main {
+  margin-top: 32px;
   display: grid;
   grid-template-columns: 1fr 300px;
   grid-gap: 16px;
 }
 
+article p {
+  font-family: sans-serif;
+}
+
 aside div {
   height: 400px;
   margin-bottom: 16px;
+}
+
+.progress {
+  flex: 1;
+  height: 10px;
+  background: tomato;
+  transition: width 0.4s;
 }
