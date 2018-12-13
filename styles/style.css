@@ -30,3 +30,31 @@ aside div {
   background: tomato;
   transition: width 0.4s;
 }
+
+.cta {
+  display: flex;
+  justify-content: center;
+}
+
+#sample-button {
+  border: 0;
+  background: #FFAAEA;
+  border: 1px solid #EC91D8;
+  border-bottom: 4px solid #EC91D8;
+  border-radius: 5px;
+  padding: 16px 32px;
+  cursor: pointer;
+}
+
+#sample-button:hover {
+  background: #FFBEEF;
+  border: 1px solid #FFBEEF;
+  border-bottom: 4px solid #FFAAEA;
+}
+
+#sample-button:active {
+  background: #EC91D8;
+  border: 1px solid #EC91D8;
+  border-bottom: 0;
+  border-top: 4px solid #FFAAEA;
+}
